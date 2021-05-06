@@ -1,0 +1,17 @@
+# action.yml
+name: 'Dream Team'
+description: 'Get a list of people to build a dream team'
+inputs:
+  number:  # id of input
+    description: 'Number of players you need'
+    required: true
+    default: 10
+  
+outputs:
+  players: # id of output
+    description: 'The players you requested'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.number }}
