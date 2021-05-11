@@ -1,8 +1,20 @@
-# Container image that runs your code
-FROM alpine:3.10
+FROM adoptopenjdk:11-jdk-hotspot AS build
 
-# Copies your code file from your action repository to the filesystem path `/` of the container
-COPY entrypoint.sh /entrypoint.sh
+WORKDIR /app
+COPY . .
+RUN apt-get update \
+    && apt-get install --yes \
+        unzip
+
+RUN ./gradlew distZip
+RUN unzip build/distributions/dreamteam-1.0-SNAPSHOT.zip
+
+FROM adoptopenjdk:11-jdk-hotspot AS execute
+
+WORKDIR /app
+
+# Copy build directory containing build artifacts
+COPY --from=build /app/dreamteam-1.0-SNAPSHOT .
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["./bin/dreamteam"]
