@@ -17,7 +17,8 @@ WORKDIR /app
 COPY --from=build /app/dreamteam-1.0-SNAPSHOT .
 
 RUN pwd \
-    && ls -R
+    && ls -R \
+    && ls -l ./bin/dreamteam
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["./bin/dreamteam"]
