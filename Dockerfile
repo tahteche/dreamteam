@@ -21,4 +21,4 @@ RUN pwd \
     && ls -l ./bin/dreamteam
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["./bin/dreamteam"]
+ENTRYPOINT ["/app/bin/dreamteam"]
