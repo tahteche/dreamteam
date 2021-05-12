@@ -15,5 +15,7 @@ class Dreamteam {
             println player.email
             println " "
         }
+
+        println "::set-output name=captains-email::${players.last().email}"
     }
 }

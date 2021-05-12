@@ -6,10 +6,9 @@ inputs:
     description: 'Number of players you need'
     required: true
     default: 10
-  
 outputs:
-  players: # id of output
-    description: 'The players you requested'
+  captains-email: # id of output
+    description: 'Captain of the team'
 runs:
   using: 'docker'
   image: 'Dockerfile'
