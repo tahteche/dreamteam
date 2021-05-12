@@ -16,5 +16,8 @@ WORKDIR /app
 # Copy build directory containing build artifacts
 COPY --from=build /app/dreamteam-1.0-SNAPSHOT .
 
+RUN pwd \
+    && ls -R
+
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["./bin/dreamteam"]
